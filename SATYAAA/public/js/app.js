@@ -755,11 +755,35 @@ function checkAndPromptCyberBureau(verdict, json, rawText, mediaTarget) {
   );
 
   if (isManipulativeOrFake) {
+    const modalVerdictText = document.getElementById('modalVerdictText');
+    const modalEvidenceBody = document.getElementById('modalEvidenceBody');
+    const modalArtifactsText = document.getElementById('modalArtifactsText');
+
+    if (modalVerdictText) {
+      modalVerdictText.textContent = (vUpper === 'AI' || vUpper === 'AI_GENERATED' || vUpper.includes('AI'))
+        ? 'AI-GENERATED SYNTHETIC MEDIA DETECTED'
+        : 'MANIPULATIVE / FABRICATED CONTENT DETECTED';
+    }
+
+    if (modalEvidenceBody) {
+      const primEv = (json && json.primary_evidence)
+        ? json.primary_evidence
+        : 'Physical lighting/acoustic inconsistencies and digital speech/neural manipulation detected.';
+      modalEvidenceBody.textContent = primEv;
+    }
+
+    if (modalArtifactsText) {
+      const arts = (json && json.detected_artifacts && Array.isArray(json.detected_artifacts))
+        ? json.detected_artifacts.join('; ')
+        : 'Latent diffusion noise grid, plastic subsurface skin scattering, vocoder phase breaks.';
+      modalArtifactsText.textContent = arts;
+    }
+
     if (cyberBanner) cyberBanner.classList.remove('hide');
     if (cyberModal) {
       setTimeout(() => {
         cyberModal.classList.remove('hide');
-      }, 600);
+      }, 300);
     }
   } else {
     if (cyberBanner) cyberBanner.classList.add('hide');

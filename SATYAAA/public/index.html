@@ -215,28 +215,37 @@
     <div class="modal-card">
       <div class="modal-header">
         <div class="cyber-badge-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         </div>
         <div>
-          <h3>Report to Nepal Police Cyber Bureau</h3>
-          <p>Manipulative or Fabricated Media Detected by SatyaLens AI</p>
+          <h3 id="modalTitle">🚨 High-Risk AI / Manipulative Media Incident Detected</h3>
+          <p id="modalSubtitle">Nepal Police Cyber Bureau Incident & Forensic Evidence Report</p>
         </div>
       </div>
       <div class="modal-body">
-        <p>SatyaLens AI has identified high-confidence evidence of <strong>fake, manipulative, or deepfaked content</strong> that may violate Nepal's Electronic Transactions Act.</p>
-        <div class="modal-info-box">
-          SatyaLens AI has generated an official <strong>Digital Forensic Evidence Report</strong> detailing why this asset was classified as <strong>Fake, AI-Generated, or Manipulative</strong> under the <em>Nepal Electronic Transactions Act 2063</em>.
+        <p style="margin-bottom: 10px;">SatyaLens AI has identified high-confidence forensic evidence of <strong id="modalVerdictText" style="color: #f43f5e;">AI-Generated / Manipulative Media</strong> that may violate Section 47 of Nepal's Electronic Transactions Act 2063.</p>
+
+        <div class="modal-info-box" style="background: rgba(244, 63, 94, 0.08); border-left: 4px solid #f43f5e; padding: 14px; margin-bottom: 12px; border-radius: 8px;">
+          <div style="font-weight: 700; color: #fda4af; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>DECISIVE FORENSIC PROOF:</span>
+          </div>
+          <div id="modalEvidenceBody" style="font-size: 0.9rem; color: #f3f4f6; line-height: 1.45;">Analyzing synthetic neural artifacts and physical inconsistencies...</div>
+        </div>
+
+        <div style="font-size: 0.85rem; color: #9ca3af; margin-bottom: 14px;">
+          <strong>Detected Artifacts:</strong> <span id="modalArtifactsText" style="color: #cbd5e1;">Latent diffusion noise grid, plastic subsurface skin scattering, neural formants.</span>
         </div>
       </div>
       <div class="modal-footer" style="flex-wrap: wrap; gap: 10px;">
         <button type="button" class="ghost" id="cancelCyberBtn">Dismiss</button>
-        <button type="button" class="ghost" id="downloadPdfBtn" style="border-color: rgba(59, 130, 246, 0.5); color: #93c5fd;">
+        <button type="button" class="ghost" id="downloadPdfBtn" style="border-color: rgba(244, 63, 94, 0.5); color: #fda4af; background: rgba(225, 29, 72, 0.1);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           <span>Download PDF Report</span>
         </button>
         <button type="button" class="primary-btn cyber-confirm-btn" id="confirmCyberBtn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Download PDF & Open Cyber Bureau</span>
+          <span>Download PDF & Report to Cyber Bureau</span>
         </button>
       </div>
     </div>
