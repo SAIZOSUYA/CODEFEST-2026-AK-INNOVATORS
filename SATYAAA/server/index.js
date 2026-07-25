@@ -677,11 +677,14 @@ Return ONLY a valid JSON object matching this exact schema:
 }`;
 
   const models = [
-    'gemini-1.5-pro',
+    'gemini-3.6-flash',
+    'gemini-flash-latest',
+    'gemini-3.5-flash',
     'gemini-2.0-flash',
-    'gemini-1.5-flash'
+    'gemini-flash-lite-latest'
   ];
 
+  const cleanMimeType = String(mimeType || 'audio/webm').split(';')[0].trim() || 'audio/webm';
   const base64Audio = fileBuffer.toString('base64');
 
   for (const model of models) {
@@ -698,7 +701,7 @@ Return ONLY a valid JSON object matching this exact schema:
               { text: prompt },
               {
                 inlineData: {
-                  mimeType: mimeType || 'audio/wav',
+                  mimeType: cleanMimeType,
                   data: base64Audio
                 }
               }

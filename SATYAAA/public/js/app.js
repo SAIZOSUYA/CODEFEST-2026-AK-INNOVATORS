@@ -679,10 +679,20 @@ if (checkAudioBtn) {
     formData.append('audioFile', selectedAudioFile);
 
     try {
-      const resp = await fetchWithRetry('/api/verify-audio', {
-        method: 'POST',
-        body: formData
-      });
+      let resp;
+      try {
+        resp = await fetch('/api/verify-audio', {
+          method: 'POST',
+          body: formData
+        });
+      } catch (e1) {
+        const formData2 = new FormData();
+        formData2.append('audioFile', selectedAudioFile);
+        resp = await fetch('http://localhost:4000/api/verify-audio', {
+          method: 'POST',
+          body: formData2
+        });
+      }
       const data = await resp.json();
 
       const aiResult = data.aiResult || {};
