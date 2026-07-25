@@ -172,9 +172,7 @@ body.light-mode .result-header h2,
 body.light-mode .hero-feature-item strong,
 body.light-mode label,
 body.light-mode p,
-body.light-mode span,
-body.light-mode .row-label,
-body.light-mode .row-val {
+body.light-mode .row-label {
   color: #0f172a;
 }
 
@@ -186,7 +184,30 @@ body.light-mode .brand-sm p {
   font-weight: 500;
 }
 
-/* Light Mode Buttons */
+/* Light Mode Status Badges Preservation */
+body.light-mode .badge-ai-generated {
+  background: #ffe4e6 !important;
+  border-color: #f43f5e !important;
+  color: #be123c !important;
+}
+
+body.light-mode .badge-authentic {
+  background: #d1fae5 !important;
+  border-color: #10b981 !important;
+  color: #047857 !important;
+}
+
+body.light-mode .badge-fake {
+  background: #ffe4e6 !important;
+  border-color: #e11d48 !important;
+  color: #9f1239 !important;
+}
+
+body.light-mode .badge-manipulative {
+  background: #fef3c7 !important;
+  border-color: #f59e0b !important;
+  color: #b45309 !important;
+}
 body.light-mode .ghost {
   background: rgba(225, 29, 72, 0.12);
   color: #be123c !important;
