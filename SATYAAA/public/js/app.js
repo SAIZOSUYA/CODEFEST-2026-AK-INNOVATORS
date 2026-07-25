@@ -834,12 +834,6 @@ function generateAndDownloadPdfEvidence(result) {
   const explanation = json.explanation || result.rawText || 'SatyaLens AI Forensic Evaluation Completed.';
   const caseId = `SL-CYBER-${Date.now()}`;
 
-  const printWindow = window.open('', '_blank');
-  if (!printWindow) {
-    generateAndDownloadWordEvidence(result);
-    return;
-  }
-
   const html = `<!DOCTYPE html>
 <html>
 <head>
@@ -918,19 +912,43 @@ function generateAndDownloadPdfEvidence(result) {
   <div class="footer">
     Official SatyaLens Forensic Evidence Report • Nepal Police Cyber Bureau Portal: https://cyberbureau.nepalpolice.gov.np/
   </div>
-
-  <script>
-    window.onload = function() {
-      setTimeout(function() { window.print(); }, 400);
-    };
-  </script>
 </body>
 </html>`;
 
-  printWindow.document.open();
-  printWindow.document.write(html);
-  printWindow.document.close();
+  // 1. Direct PDF file download via html2pdf library if loaded
+  if (window.html2pdf) {
+    const pdfWrap = document.createElement('div');
+    pdfWrap.style.padding = '20px';
+    pdfWrap.style.background = '#ffffff';
+    pdfWrap.style.color = '#111827';
+    pdfWrap.innerHTML = html.replace(/<div class="print-btn-bar">[\s\S]*?<\/div>/i, '');
+    document.body.appendChild(pdfWrap);
 
+    const opt = {
+      margin: 10,
+      filename: `SatyaLens_Forensic_Evidence_Report_${Date.now()}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, logging: false },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    window.html2pdf().set(opt).from(pdfWrap).save().then(() => {
+      if (pdfWrap.parentNode) pdfWrap.parentNode.removeChild(pdfWrap);
+    }).catch(err => {
+      console.warn('html2pdf generation fallback:', err);
+      if (pdfWrap.parentNode) pdfWrap.parentNode.removeChild(pdfWrap);
+    });
+  }
+
+  // 2. Open printable window for instant viewing/printing
+  const printWindow = window.open('', '_blank');
+  if (printWindow) {
+    printWindow.document.open();
+    printWindow.document.write(html + `<script>window.onload=function(){ setTimeout(function(){ window.print(); }, 400); };<\/script>`);
+    printWindow.document.close();
+  }
+
+  // 3. Fallback direct document download
   generateAndDownloadWordEvidence(result);
 }
 
