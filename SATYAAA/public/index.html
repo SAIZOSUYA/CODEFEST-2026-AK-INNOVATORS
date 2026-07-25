@@ -10,6 +10,31 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Floating Top AI / High-Risk Incident Alert Pop-up Bar -->
+  <div class="ai-floating-bar hide" id="aiFloatingAlertBar">
+    <div class="ai-floating-bar-content">
+      <div class="ai-alert-icon-box">
+        <span class="pulse-dot-red"></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="ai-alert-text">
+        <strong style="color: #f43f5e; font-size: 0.95rem;">🚨 AI-GENERATED SYNTHETIC MEDIA DETECTED</strong>
+        <span style="font-size: 0.82rem; color: #cbd5e1;">SatyaLens AI has generated an official Forensic Evidence Report for Nepal Cyber Bureau submission.</span>
+      </div>
+      <div class="ai-alert-actions">
+        <button type="button" class="action-icon-btn alert-pdf-btn" id="floatingDownloadPdfBtn" style="border-color: rgba(244, 63, 94, 0.4); color: #fda4af; background: rgba(225, 29, 72, 0.15);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+          <span>Download PDF Report</span>
+        </button>
+        <button type="button" class="primary-btn alert-cyber-btn" id="floatingCyberRedirectBtn" style="padding: 8px 14px; font-size: 0.85rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Report to Cyber Bureau</span>
+        </button>
+        <button type="button" class="close-bar-btn" id="closeFloatingAlertBtn" title="Dismiss Alert Bar">&times;</button>
+      </div>
+    </div>
+  </div>
+
   <div class="bg-glow"></div>
   <div class="bg-grid"></div>
 

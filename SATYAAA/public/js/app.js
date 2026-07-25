@@ -789,6 +789,9 @@ function checkAndPromptCyberBureau(verdict, json, rawText, mediaTarget) {
       modalArtifactsText.textContent = arts;
     }
 
+    const aiFloatingAlertBar = document.getElementById('aiFloatingAlertBar');
+    if (aiFloatingAlertBar) aiFloatingAlertBar.classList.remove('hide');
+
     if (cyberBanner) cyberBanner.classList.remove('hide');
     if (cyberModal) {
       setTimeout(() => {
@@ -796,12 +799,41 @@ function checkAndPromptCyberBureau(verdict, json, rawText, mediaTarget) {
       }, 300);
     }
   } else {
+    const aiFloatingAlertBar = document.getElementById('aiFloatingAlertBar');
+    if (aiFloatingAlertBar) aiFloatingAlertBar.classList.add('hide');
     if (cyberBanner) cyberBanner.classList.add('hide');
     if (cyberModal) cyberModal.classList.add('hide');
   }
 }
 
 const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+const floatingDownloadPdfBtn = document.getElementById('floatingDownloadPdfBtn');
+const floatingCyberRedirectBtn = document.getElementById('floatingCyberRedirectBtn');
+const closeFloatingAlertBtn = document.getElementById('closeFloatingAlertBtn');
+const aiFloatingAlertBar = document.getElementById('aiFloatingAlertBar');
+
+if (floatingDownloadPdfBtn) {
+  floatingDownloadPdfBtn.addEventListener('click', () => {
+    if (currentForensicResult) {
+      generateAndDownloadPdfEvidence(currentForensicResult);
+    }
+  });
+}
+
+if (floatingCyberRedirectBtn) {
+  floatingCyberRedirectBtn.addEventListener('click', () => {
+    if (currentForensicResult) {
+      generateAndDownloadPdfEvidence(currentForensicResult);
+    }
+    window.open('https://cyberbureau.nepalpolice.gov.np/', '_blank');
+  });
+}
+
+if (closeFloatingAlertBtn) {
+  closeFloatingAlertBtn.addEventListener('click', () => {
+    if (aiFloatingAlertBar) aiFloatingAlertBar.classList.add('hide');
+  });
+}
 
 if (reportCyberBtn) {
   reportCyberBtn.addEventListener('click', () => {
